@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko"> 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hyunhee's cyworld</title>
+  <style>
+    @charset "utf-8";
+    @font-face {
+      font-family: 'MapoFlowerIsland';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoGoldenPierA.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+    * {
+      box-sizing: border-box;
+      font-family: 'MapoFlowerIsland';
+    }
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    #wrap {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: left;
+      width: 1000px;
+      max-width: 1000px;
+      min-height: 600px;
+      background-color: #8f8f91;
+      background-image:  linear-gradient(#676768 1.1px, transparent 1.1px), linear-gradient(to right, #676768 1.1px, #8f8f91 1.1px);
+      background-size: 22px 22px;
+    }
+    .card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 30px;
+        height: 480px;
+        width: 800px;
+        border-radius: 25px;
+        background: #eee;
+        padding: 1px 20px;
+    }
+    .grid{
+      overflow:hidden;
+    }
+    .grid_item{
+      background:#fff;
+      float:left;
+      width:100px;
+      height:100px;
+    }
+    .grid_item.first {
+      background-color: #fff;
+      margin: 5px 0px;
+      height: 395px;
+      width: 200px;
+      border-radius:25px;
+      }
+    .grid_item.two {
+      background-color: #fff;
+      margin:5px 15px;
+      height: 395px;
+      width: 530px;
+      border-radius:25px;
+      }
+    article {
+      width: 100%;
+      text-align: left;
+    }
+    article>img {
+      display: block;
+      max-width: 60%;
+      margin: 20px 30px;
+      transition: all .3s;
+    }
+    ul {
+      margin: 30px 0;
+      padding: 0;
+      list-style-type: none;
+    }
+    ul>li {
+      font-size: 1.2rem;
+      padding: 5px 0;
+    }
+    a {
+      text-decoration: none;
+      font-weight: bold;
+    }
+    a:visited {
+      color: #192841;
+    }
+  </style>
+</head>
+<body>
+  <div id="wrap">
+    <div class="card">
+      <header>
+        <h3>Hyunhee's cyworld</h3> <!--여기 누르면 홈화면으로 넘어가도록 바꾸기-->
+      </header>
+      <div class="grid">
+        <div class = "grid_item first">
+          <article>
+            <img src="https://postfiles.pstatic.net/MjAyMTA0MzBfMTIw/MDAxNjE5Nzg2MjQxNDU2.dvEFP3nNNRIVRvinBjbnn384q2F8Sz3KpO2Ej2JK6Esg.n2Ld7OT-r0JA611YverZFY4Hq_aYYoQ7gGzmxaIhv-kg.JPEG.dimplehh/Audie-01.jpg?type=w580">
+            <p>  ㅤ</p><p>  ㅤ</p>
+            <p id="name" style="color:blue;font-weight:bold;font-size:smaller;margin:0px 5px">
+              이현희
+            </p>
+            <p id="email" style="color: orange;font-size:smaller;margin:10px 5px">
+              https://github.com/dimplehh <!--여기 클릭하면 넘어가도록 바꾸기-->
+            </p>
+          </article>
+        </div>
+        <div class = "grid_item two" style="overflow-y:scroll">
+          <article>
+            <p style="color: rgb(226, 126, 181);font-size:smaller;margin:10px 40px">
+              myroom <!--여기 클릭하면 넘어가도록 바꾸기-->
+            </p>
+            <img src="https://postfiles.pstatic.net/MjAyMTA0MzBfMTc0/MDAxNjE5NzkyMzk1MTQ1.44ucolxXy8Ost_upAiMImtZjoC28ZoBdk9-5wQgl99Eg.OaRi3QeeViqptujJFNxku7GTu0v5v5NbpCVZC9PxQIQg.PNG.dimplehh/myroom.PNG?type=w580" 
+            style="width:90%;max-width:430px; margin:20px 40px"> 
+            <p style="margin:30px 30px">은서:하이</p><p style="margin:30px 30px">혀니:하이</p>
+            <p style="margin:30px 30px">하영이:하이</p><p style="margin:30px 30px">나영이:하이</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
