@@ -71,6 +71,8 @@ module.exports = {
               border-radius:25px;
               }
             .grid_item.home {
+              background-color: #fff;
+              font-color:#000;
               margin:10px 745px;
               height: 33px;
               width: 60px;
@@ -78,21 +80,18 @@ module.exports = {
               text-align:center;
               }
             .grid_item.profile {
+              background-color: #000;
+              font-color:#fff;
               margin:50px 745px;
               height: 33px;
               width: 60px;
               border-radius:5px;
               text-align:center;
               }
-            .grid_item.diary {
-              margin:90px 745px;
-              height: 33px;
-              width: 60px;
-              border-radius:5px;
-              text-align:center;
-              }
             .grid_item.photo {
-              margin:130px 745px;
+              background-color: #000;
+              font-color:#fff;
+              margin:90px 745px;
               height: 33px;
               width: 60px;
               border-radius:5px;
@@ -120,9 +119,6 @@ module.exports = {
             a {
               text-decoration: none;
               font-weight: bold;
-            }
-            a:visited {
-              color: #192841;
             }
           </style>
         </head>

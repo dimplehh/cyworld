@@ -13,7 +13,7 @@ http.createServer((req,res)=>{
             res.write(template.html);
             res.write(`
             <header>
-            <h3>Hyunhee's cyworld</h3> <!--여기 누르면 홈화면으로 넘어가도록 바꾸기/수정으로 제목 바꾸기-->
+            <a href="/"><h3>Hyunhee's cyworld</h3></a> <!--여기 누르면 홈화면으로 넘어가도록 바꾸기/수정으로 제목 바꾸기-->
           </header>
           <div class="grid">
             <div class = "grid_item first">
@@ -24,7 +24,7 @@ http.createServer((req,res)=>{
                   이현희
                 </p>
                 <p id="email" style="color: orange;font-size:smaller;margin:10px 5px">
-                    <a href="https://github.com/dimplehh"><font color="orange">https://github.com/dimplehh</font></a>
+                    <a href="https://github.com/dimplehh" target="_blank"><font color="orange">https://github.com/dimplehh</font></a>
                 </p>
               </article>
             </div>
@@ -40,16 +40,13 @@ http.createServer((req,res)=>{
               </article>
             </div>
             <div class="grid_item home" style="position:absolute">
-              home
+            <a href="/"><font color="black">home</font></a>
             </div>
             <div class="grid_item profile" style="position:absolute">
-              profile
-            </div>
-            <div class="grid_item diary" style="position:absolute">
-              diary
+              <a href="/profile"><font color="white">profile</font></a>
             </div>
             <div class="grid_item photo" style="position:absolute">
-              photo
+              <a href="/photo"><font color="white">photo</font></a>
             </div>
           </div>
         </div>
@@ -59,5 +56,75 @@ http.createServer((req,res)=>{
             `);
             res.end();
         }
+    }
+    else if(pathName === '/profile'){
+        res.writeHead(200);
+        res.write(template.html);
+        res.write(`
+        <header>
+        <a href="/"><h3>Hyunhee's cyworld</h3></a> <!--여기 누르면 홈화면으로 넘어가도록 바꾸기/수정으로 제목 바꾸기-->
+      </header>
+      <div class="grid">
+        <div class = "grid_item first">
+          <article>
+          </article>
+        </div>
+        <div class = "grid_item two" style="overflow-y:scroll">
+          <article>
+          </article>
+        </div>
+        <div class="grid_item home" style="position:absolute">
+        <a href="/"><font color="white">home</font></a>
+        </div>
+        <div class="grid_item profile" style="position:absolute">
+          <a href="/profile"><font color="black">profile</font></a>
+        </div>
+        <div class="grid_item photo" style="position:absolute">
+          <a href="/photo"><font color="white">photo</font></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+        `);
+        res.end();
+    }
+    else if(pathName === '/photo'){
+        res.writeHead(200);
+        res.write(template.html);
+        res.write(`
+        <header>
+        <a href="/"><h3>Hyunhee's cyworld</h3></a> <!--여기 누르면 홈화면으로 넘어가도록 바꾸기/수정으로 제목 바꾸기-->
+      </header>
+      <div class="grid">
+        <div class = "grid_item first">
+          <article>
+          </article>
+        </div>
+        <div class = "grid_item two" style="overflow-y:scroll">
+          <article>
+          </article>
+        </div>
+        <div class="grid_item home" style="position:absolute">
+        <a href="/"><font color="white">home</font></a>
+        </div>
+        <div class="grid_item profile" style="position:absolute">
+          <a href="/profile"><font color="white">profile</font></a>
+        </div>
+        <div class="grid_item photo" style="position:absolute">
+            <a href="/photo"><font color="black">photo</font></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+        `);
+        res.end();
+    }
+    else{
+        res.writeHead(404);
+        res.end();
     }
 }).listen(3000);
