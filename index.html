@@ -67,6 +67,34 @@
       width: 530px;
       border-radius:25px;
       }
+    .grid_item.home {
+      margin:10px 745px;
+      height: 33px;
+      width: 60px;
+      border-radius:5px;
+      text-align:center;
+      }
+    .grid_item.profile {
+      margin:50px 745px;
+      height: 33px;
+      width: 60px;
+      border-radius:5px;
+      text-align:center;
+      }
+    .grid_item.diary {
+      margin:90px 745px;
+      height: 33px;
+      width: 60px;
+      border-radius:5px;
+      text-align:center;
+      }
+    .grid_item.photo {
+      margin:130px 745px;
+      height: 33px;
+      width: 60px;
+      border-radius:5px;
+      text-align:center;
+      }
     article {
       width: 100%;
       text-align: left;
@@ -96,10 +124,10 @@
   </style>
 </head>
 <body>
-  <div id="wrap">
+  <div id="wrap" style="position:relative">
     <div class="card">
       <header>
-        <h3>Hyunhee's cyworld</h3> <!--여기 누르면 홈화면으로 넘어가도록 바꾸기-->
+        <h3>Hyunhee's cyworld</h3> <!--여기 누르면 홈화면으로 넘어가도록 바꾸기/수정으로 제목 바꾸기-->
       </header>
       <div class="grid">
         <div class = "grid_item first">
@@ -117,13 +145,25 @@
         <div class = "grid_item two" style="overflow-y:scroll">
           <article>
             <p style="color: rgb(226, 126, 181);font-size:smaller;margin:10px 40px">
-              myroom <!--여기 클릭하면 넘어가도록 바꾸기-->
+              myroom
             </p>
             <img src="https://postfiles.pstatic.net/MjAyMTA0MzBfMTc0/MDAxNjE5NzkyMzk1MTQ1.44ucolxXy8Ost_upAiMImtZjoC28ZoBdk9-5wQgl99Eg.OaRi3QeeViqptujJFNxku7GTu0v5v5NbpCVZC9PxQIQg.PNG.dimplehh/myroom.PNG?type=w580" 
             style="width:90%;max-width:430px; margin:20px 40px"> 
             <p style="margin:30px 30px">은서:하이</p><p style="margin:30px 30px">혀니:하이</p>
-            <p style="margin:30px 30px">하영이:하이</p><p style="margin:30px 30px">나영이:하이</p>
+            <p style="margin:30px 30px">나현이:하이</p><p style="margin:30px 30px">하영이:하이</p>
           </article>
+        </div>
+        <div class="grid_item home" style="position:absolute">
+          home
+        </div>
+        <div class="grid_item profile" style="position:absolute">
+          profile
+        </div>
+        <div class="grid_item diary" style="position:absolute">
+          diary
+        </div>
+        <div class="grid_item photo" style="position:absolute">
+          photo
         </div>
       </div>
     </div>
