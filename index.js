@@ -135,7 +135,18 @@ http.createServer((req,res)=>{
             </div>
             <div class = "grid_item two" style="overflow-y:scroll">
               <article>
+              <h2>${title}</h2>
+              <hr width="95%" size="1" color="grey">
+              <p>
+                ${data}
+              </p>
               </article>
+              <a href="/create">글 작성하기</a>
+              <a href="/update?title=${encodeURIComponent(title)}">수정</a>
+              <form action="/delete_post" method="post">
+              <input type="hidden" name="title" value="${encodeURIComponent(title)}"><!--title을 새롭게 encoding해서 title이라는 이름으로 deletepost로 던져주기-->
+              <input type="submit" value="삭제">
+              </form>
             </div>
             <div class="grid_item home" style="position:absolute">
             <a href="/"><font color="white">home</font></a>
@@ -186,8 +197,18 @@ http.createServer((req,res)=>{
 </html>
         `);
         res.end();
-    }
-    else{
+    }else if(pathName === '/delete_post'){
+      let body='';
+      req.on('data',chunk => body += chunk);
+      req.on('end',()=>{
+        const post = qs.parse(body);
+        console.log(post);
+        fs.unlink(decodeURIComponent(`./data/${post.title}.txt`),()=>{
+          res.writeHead(302,{Location: '/profile'});
+          res.end();
+        });
+      });
+    }else{
         res.writeHead(404);
         res.end();
     }
