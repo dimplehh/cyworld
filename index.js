@@ -58,52 +58,103 @@ http.createServer((req,res)=>{
         }
     }
     else if(pathName === '/profile'){
-      fs.readdir('./data','utf8',(err,files)=>{
-        if (err) throw err;
-        const list = template.getLITag(files);
-        res.writeHead(200);
-        res.write(template.html1);
-        res.write(`
-        <header>
-        <a href="/"><h3>Hyunhee's cyworld</h3></a> <!--여기 누르면 홈화면으로 넘어가도록 바꾸기/수정으로 제목 바꾸기-->
-      </header>
-      <div class="grid">
-        <div class = "grid_item first">
-          <article>
-          <p style="color: rgb(226, 126, 181);font-size:smaller;margin:10px 10px">
-          profile
-          </p>
-          <hr width="95%" size="1" color="grey">
-          <div class="list" style="margin:0px 10px">
-          <ul>
-          ${list}
-          </ul>
+      if(!urlObj.search){
+        console.log(urlObj);
+        fs.readdir('./data','utf8',(err,files)=>{
+          if (err) throw err;
+          const list = template.getLITag(files);
+          res.writeHead(200);
+          res.write(template.html1);
+          res.write(`
+          <header>
+          <a href="/"><h3>Hyunhee's cyworld</h3></a> <!--여기 누르면 홈화면으로 넘어가도록 바꾸기/수정으로 제목 바꾸기-->
+        </header>
+        <div class="grid">
+          <div class = "grid_item first">
+            <article>
+            <p style="color: rgb(226, 126, 181);font-size:smaller;margin:10px 10px">
+            profile
+            </p>
+            <hr width="95%" size="1" color="grey">
+            <div class="list" style="margin:0px 10px">
+            <ul>
+            ${list}
+            </ul>
+            </div>
+            </article>
           </div>
-          </article>
-        </div>
-        <div class = "grid_item two" style="overflow-y:scroll">
-          <article>
-          </article>
-        </div>
-        <div class="grid_item home" style="position:absolute">
-        <a href="/"><font color="white">home</font></a>
-        </div>
-        <div class="grid_item profile" style="position:absolute">
-          <a href="/profile"><font color="black">profile</font></a>
-        </div>
-        <div class="grid_item photo" style="position:absolute">
-          <a href="/photo"><font color="white">photo</font></a>
+          <div class = "grid_item two" style="overflow-y:scroll">
+            <article>
+            </article>
+          </div>
+          <div class="grid_item home" style="position:absolute">
+          <a href="/"><font color="white">home</font></a>
+          </div>
+          <div class="grid_item profile" style="position:absolute">
+            <a href="/profile"><font color="black">profile</font></a>
+          </div>
+          <div class="grid_item photo" style="position:absolute">
+            <a href="/photo"><font color="white">photo</font></a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</body>
-</html>
-        `);
-        res.end();
-      });
-    }
-    else if(pathName === '/photo'){
+  </body>
+  </html>
+          `);
+          res.end();
+        });
+      }
+      console.log(urlObj);
+      if(urlObj.search){
+        console.log(urlObj.query);
+        fs.readdir('./data','utf8',(err,files)=>{
+          if (err) throw err;
+          const list = template.getLITag(files);
+          fs.readFile(`./data/${urlObj.query.title}.txt`,`utf8`,(err2,data)=>{
+            if (err2) throw err2;
+            const title = urlObj.query.title;
+            res.writeHead(200);
+            res.write(template.html1);
+            res.end(`          <header>
+            <a href="/"><h3>Hyunhee's cyworld</h3></a> <!--여기 누르면 홈화면으로 넘어가도록 바꾸기/수정으로 제목 바꾸기-->
+          </header>
+          <div class="grid">
+            <div class = "grid_item first">
+              <article>
+              <p style="color: rgb(226, 126, 181);font-size:smaller;margin:10px 10px">
+              profile
+              </p>
+              <hr width="95%" size="1" color="grey">
+              <div class="list" style="margin:0px 10px">
+              <ul>
+              ${list}
+              </ul>
+              </div>
+              </article>
+            </div>
+            <div class = "grid_item two" style="overflow-y:scroll">
+              <article>
+              </article>
+            </div>
+            <div class="grid_item home" style="position:absolute">
+            <a href="/"><font color="white">home</font></a>
+            </div>
+            <div class="grid_item profile" style="position:absolute">
+              <a href="/profile"><font color="black">profile</font></a>
+            </div>
+            <div class="grid_item photo" style="position:absolute">
+              <a href="/photo"><font color="white">photo</font></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+    </html>`);
+          });
+        });
+      }
+    }else if(pathName === '/photo'){
         res.writeHead(200);
         res.write(template.html2);
         res.write(`

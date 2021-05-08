@@ -381,7 +381,7 @@ module.exports = {
           let str='';
           const list = files.map(e => e.split('.txt')[0]);
           for (let i = 0;  i < list.length; i++){
-            str += `<li><a href="./profile/?title=${list[i]}"><font size="3" color="black">${list[i]}</font></a></li>`;
+            str += `<li><a href="./profile?title=${list[i]}"><font size="3" color="black">${list[i]}</font></a></li>`;
           }
           return str;
         }
