@@ -33,12 +33,6 @@
       background-image:  linear-gradient(#676768 1.1px, transparent 1.1px), linear-gradient(to right, #676768 1.1px, #8f8f91 1.1px);
       background-size: 22px 22px;
     }
-    .title{
-      float:left;
-    }
-    .title.second{
-      margin:20px 40px;
-    }
     .card {
         display: flex;
         flex-direction: column;
@@ -74,6 +68,8 @@
       border-radius:25px;
       }
     .grid_item.home {
+      background-color: #000;
+      font-color:#000;
       margin:10px 745px;
       height: 33px;
       width: 60px;
@@ -81,21 +77,18 @@
       text-align:center;
       }
     .grid_item.profile {
+      background-color: #000;
+      font-color:#fff;
       margin:50px 745px;
       height: 33px;
       width: 60px;
       border-radius:5px;
       text-align:center;
       }
-    .grid_item.diary {
-      margin:90px 745px;
-      height: 33px;
-      width: 60px;
-      border-radius:5px;
-      text-align:center;
-      }
     .grid_item.photo {
-      margin:130px 745px;
+      background-color: #fff;
+      font-color:#fff;
+      margin:90px 745px;
       height: 33px;
       width: 60px;
       border-radius:5px;
@@ -107,7 +100,7 @@
     }
     article>img {
       display: block;
-      max-width: 60%;
+      max-width: 70%;
       margin: 20px 30px;
       transition: all .3s;
     }
@@ -124,50 +117,31 @@
       text-decoration: none;
       font-weight: bold;
     }
-    a:visited {
-      color: #192841;
-    }
   </style>
 </head>
 <body>
   <div id="wrap" style="position:relative">
     <div class="card">
-      <a href="/"><h3>Hyunhee's cyworld</h3></a> <!--여기 누르면 홈화면으로 넘어가도록 바꾸기/수정으로 제목 바꾸기-->
+      <header>
+        <a href="/"><h3>Hyunhee's cyworld</h3></a> <!--여기 누르면 홈화면으로 넘어가도록 바꾸기/수정으로 제목 바꾸기-->
+      </header>
       <div class="grid">
         <div class = "grid_item first">
           <article>
-            <img src="https://postfiles.pstatic.net/MjAyMTA0MzBfMTIw/MDAxNjE5Nzg2MjQxNDU2.dvEFP3nNNRIVRvinBjbnn384q2F8Sz3KpO2Ej2JK6Esg.n2Ld7OT-r0JA611YverZFY4Hq_aYYoQ7gGzmxaIhv-kg.JPEG.dimplehh/Audie-01.jpg?type=w580">
-            <p>  ㅤ</p><p>  ㅤ</p>
-            <p id="name" style="color:blue;font-weight:bold;font-size:smaller;margin:0px 5px">
-              이현희
-            </p>
-            <p id="email" style="color: orange;font-size:smaller;margin:10px 5px">
-              https://github.com/dimplehh <!--여기 클릭하면 넘어가도록 바꾸기-->
-            </p>
           </article>
         </div>
         <div class = "grid_item two" style="overflow-y:scroll">
           <article>
-            <p style="color: rgb(226, 126, 181);font-size:smaller;margin:10px 40px">
-              myroom
-            </p>
-            <img src="https://postfiles.pstatic.net/MjAyMTA0MzBfMTc0/MDAxNjE5NzkyMzk1MTQ1.44ucolxXy8Ost_upAiMImtZjoC28ZoBdk9-5wQgl99Eg.OaRi3QeeViqptujJFNxku7GTu0v5v5NbpCVZC9PxQIQg.PNG.dimplehh/myroom.PNG?type=w580" 
-            style="width:90%;max-width:430px; margin:20px 40px"> 
-            <p style="margin:30px 30px">은서:하이</p><p style="margin:30px 30px">혀니:하이</p>
-            <p style="margin:30px 30px">나현이:하이</p><p style="margin:30px 30px">하영이:하이</p>
           </article>
         </div>
         <div class="grid_item home" style="position:absolute">
-          home
+        <a href="/"><font color="white">home</font></a>
         </div>
         <div class="grid_item profile" style="position:absolute">
-          profile
-        </div>
-        <div class="grid_item diary" style="position:absolute">
-          diary
+          <a href="/profile"><font color="white">profile</font></a>
         </div>
         <div class="grid_item photo" style="position:absolute">
-          photo
+            <a href="/photo"><font color="black">photo</font></a>
         </div>
       </div>
     </div>
