@@ -9,5 +9,3 @@
 사용 방법
 1. git clone으로 모든 코드 내려받은 뒤 
 2. 2. vscode 등에서 node 가 깔려있는 terminal에서 node index 라고 입력하면 실행 가능
-
-동작 과정:cyworld.mp4 참고
