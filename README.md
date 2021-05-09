@@ -9,3 +9,5 @@
 사용 방법
 1. git clone으로 모든 코드 내려받은 뒤 
 2. 2. vscode 등에서 node 가 깔려있는 terminal에서 node index 라고 입력하면 실행 가능
+
+![dfd](https://user-images.githubusercontent.com/57757760/117559127-b19b8900-b0bd-11eb-8ccf-dcf60add0d6d.PNG)
