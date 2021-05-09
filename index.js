@@ -285,7 +285,88 @@ http.createServer((req,res)=>{
         const title = post.title;
         const content = post.content;
         fs.writeFile(`./data/${title}.txt`,content,'utf8',()=>{
-          res.writeHead(302,{Location:`/profile?title=${title}`});
+          res.writeHead(302,{Location:`/profile?title=${encodeURIComponent(title)}`});
+          res.end();
+        });
+      });
+    }else if(pathName === '/update'){
+      fs.readdir('./data','utf8',(err,files)=>{
+        if (err) throw err;
+        const list = template.getLITag(files);
+        fs.readFile(`./data/${urlObj.query.title}.txt`,'utf8',(err2,data)=>{
+          if (err2) throw err2;
+          res.writeHead(200,{'Content-Type':'text/html'});
+          res.write(template.html1);
+          res.write(`
+        <header>
+        <a href="/"><h3>Hyunhee's cyworld</h3></a> <!--여기 누르면 홈화면으로 넘어가도록 바꾸기/수정으로 제목 바꾸기-->
+      </header>
+      <div class="grid">
+        <div class = "grid_item first">
+          <article>
+          <p style="color: rgb(226, 126, 181);font-size:smaller;margin:10px 10px">
+          profile
+          </p>
+          <hr width="95%" size="1" color="grey">
+          <div class="list" style="margin:0px 10px">
+          <ul>
+          ${list}
+          </ul>
+          </div>
+          </article>
+        </div>
+        <div class = "grid_item two" style="overflow-y:scroll">
+            <div class = "content" style="margin:0px 30px">
+              <article>
+              <form action="/update_post" method="post">
+              <p>
+              <input type = "hidden" name="original_title" value="${urlObj.query.title}">
+              <input type="text" id="title" name="title" value="${urlObj.query.title}">
+              </p>
+              <hr width="99%" size="1" color="grey">
+              <textarea name="content">
+                ${data}
+              </textarea>
+              <p>
+                <input type="submit">
+              </p>
+              </form>
+              </article>
+            </div>
+        </div>
+        <div class="grid_item home" style="position:absolute">
+        <a href="/"><font color="white">home</font></a>
+        </div>
+        <div class="grid_item profile" style="position:absolute">
+          <a href="/profile"><font color="black">profile</font></a>
+        </div>
+        <div class="grid_item photo" style="position:absolute">
+          <a href="/photo"><font color="white">photo</font></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+        `);
+          res.end();
+        });
+      });
+    }else if (pathName === '/update_post') { //pathname이 update_post인 경우
+      let body = '';
+      req.on('data', chunk => body += chunk);
+      req.on('end', () => {
+        const post = qs.parse(body);
+        const title = post.title;
+        const original_title = post.original_title;
+        if (title !== original_title) { //새로 update한 타이틀이 기존의 title과 다르다면
+          fs.unlink(`./data/${original_title}.txt`, () => { //기존에 있던 링크를 지워줌(unlink)-fs모듈의 일
+            //code
+          });
+        }
+        const content = post.content; //content를 새로 업데이트
+        fs.writeFile(`./data/${title}.txt`, content, 'utf8', () => { //이부분은 create랑 동일
+          res.writeHead(302,{Location: `/profile?title=${encodeURIComponent(title)}`});//넘겨줄때 한글제목은 encodeURIComponent로 넘겨줘야 잘 됨.
           res.end();
         });
       });
