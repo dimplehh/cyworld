@@ -85,6 +85,12 @@ http.createServer((req,res)=>{
           </div>
           <div class = "grid_item two" style="overflow-y:scroll">
             <article>
+            <h2>　</h2>
+            <hr width="95%" size="1" color="grey">
+            <div class= "order" style="text-align:right;margin:0px 30px">
+              <br><br>
+              <a href="/create">글 작성하기</a>
+            </div>
             </article>
           </div>
           <div class="grid_item home" style="position:absolute">
@@ -134,19 +140,24 @@ http.createServer((req,res)=>{
               </article>
             </div>
             <div class = "grid_item two" style="overflow-y:scroll">
-              <article>
-              <h2>${title}</h2>
-              <hr width="95%" size="1" color="grey">
-              <p>
-                ${data}
-              </p>
-              </article>
-              <a href="/create">글 작성하기</a>
-              <a href="/update?title=${encodeURIComponent(title)}">수정</a>
-              <form action="/delete_post" method="post">
-              <input type="hidden" name="title" value="${encodeURIComponent(title)}"><!--title을 새롭게 encoding해서 title이라는 이름으로 deletepost로 던져주기-->
-              <input type="submit" value="삭제">
-              </form>
+              <div class = "content" style="margin:0px 30px">
+                <article>
+                <h2>${title}</h2>
+                <hr width="99%" size="1" color="grey">
+                <p>
+                  ${data}
+                </p>
+                </article>
+                <div class= "order" style="text-align:right">
+                  <form action="/delete_post" method="post">
+                  <input type="hidden" name="title" value="${encodeURIComponent(title)}"><!--title을 새롭게 encoding해서 title이라는 이름으로 deletepost로 던져주기-->
+                  <input type="submit" value="삭제">
+                  </form>
+                  <a href="/update?title=${encodeURIComponent(title)}">수정</a>
+                  <br><br>
+                  <a href="/create">글 작성하기</a>
+                </div>
+              </div>
             </div>
             <div class="grid_item home" style="position:absolute">
             <a href="/"><font color="white">home</font></a>
@@ -205,6 +216,76 @@ http.createServer((req,res)=>{
         console.log(post);
         fs.unlink(decodeURIComponent(`./data/${post.title}.txt`),()=>{
           res.writeHead(302,{Location: '/profile'});
+          res.end();
+        });
+      });
+    }else if(pathName ==='/create'){
+      fs.readdir('./data','utf8',(err,files)=>{
+        if (err) throw err;
+        const list = template.getLITag(files);
+        res.writeHead(200,{'Content-Type':'text/html'});
+        res.write(template.html1);
+        res.write(`
+        <header>
+        <a href="/"><h3>Hyunhee's cyworld</h3></a> <!--여기 누르면 홈화면으로 넘어가도록 바꾸기/수정으로 제목 바꾸기-->
+      </header>
+      <div class="grid">
+        <div class = "grid_item first">
+          <article>
+          <p style="color: rgb(226, 126, 181);font-size:smaller;margin:10px 10px">
+          profile
+          </p>
+          <hr width="95%" size="1" color="grey">
+          <div class="list" style="margin:0px 10px">
+          <ul>
+          ${list}
+          </ul>
+          </div>
+          </article>
+        </div>
+        <div class = "grid_item two" style="overflow-y:scroll">
+            <div class = "content" style="margin:0px 30px">
+              <article>
+              <form action="/create_post" method="post">
+              <p>
+              <input type="text" id="title" name="title">
+              </p>
+              <hr width="99%" size="1" color="grey">
+              <textarea name="content">
+              </textarea>
+              <p>
+                <input type="submit">
+              </p>
+              </form>
+              </article>
+            </div>
+        </div>
+        <div class="grid_item home" style="position:absolute">
+        <a href="/"><font color="white">home</font></a>
+        </div>
+        <div class="grid_item profile" style="position:absolute">
+          <a href="/profile"><font color="black">profile</font></a>
+        </div>
+        <div class="grid_item photo" style="position:absolute">
+          <a href="/photo"><font color="white">photo</font></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+        `);
+      res.end();
+      });
+    }else if(pathName === '/create_post'){
+      let body='';
+      req.on('data',chunk => body += chunk);
+      req.on('end',()=>{
+        const post = qs.parse(body);
+        const title = post.title;
+        const content = post.content;
+        fs.writeFile(`./data/${title}.txt`,content,'utf8',()=>{
+          res.writeHead(302,{Location:`/profile?title=${title}`});
           res.end();
         });
       });
